@@ -245,7 +245,7 @@ export function isbn10To13(isbn10:string):string | null {
 	if (!isbn10Regex.test(isbn10)) {
 		return null;
 	}
-	const tempISBN10 = `${isbn10}`.replaceAll('-', '');
+	const tempISBN10 = `${isbn10}`.replace(/[- ]/g, '');
 
 	const isbn13 = `978${tempISBN10.substring(0, 9)}`;
 
@@ -264,7 +264,7 @@ export function isbn13To10(isbn13:string):string | null {
 	if (!isbn13Regex.test(isbn13)) {
 		return null;
 	}
-	const tempISBN13 = isbn13.replaceAll('-', '');
+	const tempISBN13 = isbn13.replace(/[- ]/g, '');
 	const digits = tempISBN13.substring(3, 12).split('');
 	digits.push(calIsbn10Chk(digits.join('')));
 

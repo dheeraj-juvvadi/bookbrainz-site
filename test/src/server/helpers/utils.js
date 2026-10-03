@@ -95,6 +95,16 @@ describe('Convert ISBNs', () => {
 		const result = isbn13To10(isbn13);
 		expect(result).to.equal(expectedResult);
 	});
+	it('should convert an ISBN-10 with space separators', () => {
+		expect(isbn10To13('0 306 40615 2')).to.equal('9780306406157');
+	});
+	it('should convert an ISBN-13 with space separators', () => {
+		expect(isbn13To10('978 0 306 40615 7')).to.equal('0306406152');
+	});
+	it('should convert ISBNs with mixed space and hyphen separators', () => {
+		expect(isbn10To13('0-306 40615-2')).to.equal('9780306406157');
+		expect(isbn13To10('978-0 306-40615 7')).to.equal('0306406152');
+	});
 });
 
 describe('getIdByField', () => {
